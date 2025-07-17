@@ -9,3 +9,7 @@ main {
 .rating h3 {
   padding: 1rem 0;
 }
+
+.product-info {
+  border-top: 1px solid #dee2e6 !important;
+}

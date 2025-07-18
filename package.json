@@ -12,7 +12,7 @@
   },
   "license": "MIT",
   "author": "Ainhoa Prada",
-  "type": "commonjs",
+  "type": "module",
   "main": "server.js",
   "scripts": {
     "start": "node backend/server",
@@ -22,7 +22,8 @@
   },
   "dependencies": {
     "dotenv": "^17.2.0",
-    "express": "^5.1.0"
+    "express": "^5.1.0",
+    "moongose": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^9.2.0",

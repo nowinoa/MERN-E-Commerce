@@ -1,36 +1,38 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import Product from "../components/Product.jsx";
+import Message from "../components/Message.jsx";
+import Loader from '../components/Loader.jsx';
 import { Col, Row } from "react-bootstrap";
-import axios from 'axios';
+import { listProducts } from "../actions/productAction.js";
 
 const HomeScreen = () => {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
 
-  // this is an asynchonous function, because otherwise
-  // the code will stop here until this block is executed
-  // and then continue with the run. We don't want that,
-  // so we made it async. 
+  const productList = useSelector((state) => state.product);
+
+  const { loading , error, products } = productList;
+
   useEffect(() => {
-    const fetchProducts = async () => {
-      // promises can bring data inmediatelly or in the future, or may never
-      // that is why is called promise. 
-      const { data } = await axios.get('/api/products');
-
-      setProducts(data);
-    };
-    fetchProducts()
-  }, []);
+    dispatch(listProducts());
+  }, [dispatch]);
 
   return (
     <>
       <h1 className="p-3 text-center">Latest Products</h1>
-      <Row className="mx-5">
-        {products.map((product) => (
-          <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
-            <Product product={product} />
-          </Col>
-        ))}
-      </Row>
+      {loading ? (
+        <Loader></Loader>
+      ) : error ? (
+        <Message variant='danger'>{error}</Message>
+      ) : (
+        <Row className="mx-5">
+          {products.map((product) => (
+            <Col key={product._id} sm={12} md={6} lg={4} xl={3}>
+              <Product product={product} />
+            </Col>
+          ))}
+        </Row>
+      )}
     </>
   );
 };

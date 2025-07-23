@@ -1,15 +1,26 @@
 // src/store.js
+import { configureStore } from '@reduxjs/toolkit';
+import { productListReducer, productDetailsReducer } from './reducers/productReducers.js';
+import { cartReducer } from './reducers/cartReducers.js';
 
-// to store global state
-import { configureStore } from '@reduxjs/toolkit'
-import { productListReducer } from '../src/reducers/productReducers.js';
+
+const cartItemsFromStorage = localStorage.getItem('cartItems')
+  ? JSON.parse(localStorage.getItem('cartItems'))
+  : [];
+
+// Estado inicial
+const initialState = {
+  cart: { cartItems: cartItemsFromStorage },
+};
+
 
 const store = configureStore({
   reducer: {
-    product: productListReducer, // this will hold all state related to products 
-    // this can only be changed through actions and the reducer interprets the accion
-    // depending on its type
+    product: productListReducer,
+    productDetails: productDetailsReducer,
+    cart: cartReducer,
   },
-})
+  preloadedState: initialState,
+});
 
-export default store
+export default store;

@@ -1,9 +1,9 @@
 # MERN-E-Commerce
 
-- Adding redux to the project
-- Creating store
-- Creating reducers for each feature
-- Adding constant folder for each feature
-- Setting up redux 
-- setting up load spinner
-- setting up error alerts
+- Creating product details reducer
+- Creating product details action
+- Fetching product details from global state with redux
+- Setting a dropdown menu for product quantity
+- using navigation hook to redirect to cart/id/qty
+- Creating cart screen
+

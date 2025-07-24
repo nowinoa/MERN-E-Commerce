@@ -5,11 +5,24 @@ main {
 .rating span{
   margin: 0.1rem;
 }
-
-.rating h3 {
+h1 {
   padding: 1rem 0;
+  font-size: 1.8rem;
 }
+
+h2 {
+  padding: 0.5rem 0;
+  font-size: 1.4rem;
+}
+ h3 {
+  padding: 1rem 0;
+  font-size: 1rem;
+}
+
+
 
 .product-info {
   border-top: 1px solid #dee2e6 !important;
 }
+
+
